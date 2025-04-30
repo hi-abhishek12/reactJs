@@ -2,21 +2,30 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [value, setValue] = useState(1)
+  console.log('app rendered',Math.random())
+  const [value, setValue] = useState({
+    value :0,
+  })
   //const [multiplyvalue, setmultiplyvalue] = useState(1)
 
-  const multiplyvalue = value*5
+  // const multiplyvalue = value*5
 
-  function multiply(){
-    setValue(value +1);
+  // function multiply(){
+  //   setValue(value +1);
+  // }
+  function clickMe(){
+    //console.log(`logged`)
+    setValue({
+      value : 0,
+    })
   }
   return (
     <>
-      <h1>Couter : {value}</h1>
+      <h1>Couter : {value.value}</h1>
       <button
-      onClick={multiply}>multiplied by 5
+      onClick={clickMe}>multiplied by 5
       </button>
-      <h2>multiplied value : {multiplyvalue}</h2>
+      {/* <h2>multiplied value : {multiplyvalue}</h2> */}
     </>
   )
 }
