@@ -1,24 +1,43 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import { TodoProvider } from './contexts'
 function App() {
   const [todos , setTodos] = useState([])
 
-  const addTodo = () =>{
-    
+  const addTodo = (todo) =>{
+    setTodos((prevTodos) => [{id: Date.now(),...todo}, ...prevTodos])
   }
 
-  const updateTodo = () =>{
-    
+  const updateTodo = (todo , id) =>{
+   setTodos((prev) => prev.map((prevTodos) => (
+    prevTodos.id === id ? todo : prevTodos
+   )))
   }
 
-  const removeTodo = () =>{
-    
+  const removeTodo = (id) =>{
+    setTodos((prev) => prev.filter((prevTodos) => (
+      prevTodos.id !== id
+    )))
   }
 
   const toogleComplete = () =>{
-    
+    setTodos((prev) => prev.map((prevTodo) => (
+      prevTodo.id === id ? {...prevTodo , completed : ! prevTodo.completed} 
+       : prevTodo
+    )
+    ))
   }
+
+  useEffect(() =>{
+    const todos = JSON.parse(localStorage.getItem("todos")) 
+    if(todos){
+      setTodos(todos);
+    }
+  },[])
+
+  useEffect(() =>{
+    localStorage.setItem("todos", JSON.stringify(todos))
+  },[])
   return (
     <TodoProvider value={{todos, addTodo , updateTodo ,removeTodo , toogleComplete}}>
 
