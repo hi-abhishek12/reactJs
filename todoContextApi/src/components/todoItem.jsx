@@ -1,6 +1,8 @@
 import React from 'react'
+import { useTodo } from '../contexts'
 
 function TodoItem({ todo }) {
+    const {updateTodo , removeTodo , toogleComplete} = useTodo()
     
     return (
         <div
@@ -12,7 +14,7 @@ function TodoItem({ todo }) {
                 type="checkbox"
                 className="cursor-pointer"
                 checked={todo.completed}
-                onChange={toggleCompleted}
+                onChange={toogleComplete}
             />
             <input
                 type="text"
