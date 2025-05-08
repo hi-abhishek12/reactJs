@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useTodo } from '../contexts'
 
-function todoForm() {
+function TodoForm() {
     const [todo , setTodo] = useState({})
     const {addTodo} = useTodo();
 
@@ -31,4 +31,4 @@ function todoForm() {
     )
 }
 
-export default todoForm
+export default TodoForm
